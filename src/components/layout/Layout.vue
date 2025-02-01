@@ -7,7 +7,13 @@
     </div>
 
     <footer>
-      <a href="">GitHub code Vue.js</a>
+      <a
+        href="https://github.com/OlehWhite/to-do-list-vue"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub code Vue.js</a
+      >
     </footer>
   </div>
 </template>
@@ -82,6 +88,13 @@ footer a:hover {
 
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    height: 100%;
+    border-radius: 0;
   }
 }
 </style>

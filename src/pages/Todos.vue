@@ -126,4 +126,10 @@ export default {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .btn-back {
+    bottom: 50px;
+  }
+}
 </style>
