@@ -8,7 +8,13 @@
 
       <input-ui v-if="isChanged" v-model="todo.name" />
 
-      <p v-if="!isChanged" class="todo-name">{{ todo.name }}</p>
+      <p v-if="!isChanged && !todo.completed" class="todo-name">
+        {{ todo.name }}
+      </p>
+
+      <s v-if="isChanged || todo.completed" class="disabled-todo-name">
+        {{ todo.name }}
+      </s>
     </div>
 
     <div class="wrapper-buttons">
@@ -20,16 +26,15 @@
     </div>
   </div>
 
-  <modal-ui v-model:show="open" :todo="todo" @remove="$emit('remove', todo)" />
+  <modal-ui v-model:show="open" :item="todo" @remove="$emit('remove', todo)" />
 </template>
 
 <script lang="ts">
-import InputUI from "@/components/IU/InputUI.vue";
-import CheckboxUi from "@/components/IU/CheckboxUI.vue";
-import ModalUI from "@/components/IU/ModalUI.vue";
+import ModalUi from "@/components/IU/ModalUI.vue";
+import InputUi from "@/components/IU/InputUI.vue";
 
 export default {
-  components: { CheckboxUi, InputUI, ModalUI },
+  components: { InputUi, ModalUi },
   props: {
     todo: {
       type: Object,
@@ -42,6 +47,7 @@ export default {
       open: false,
     };
   },
+  emits: ["remove", "completed", "update"],
   methods: {
     changeTodoName() {
       this.isChanged = !this.isChanged;
@@ -98,6 +104,10 @@ export default {
 .todo-name {
   padding: 10px 0;
   color: #fff;
+  font-size: 22px;
+}
+
+.disabled-todo-name {
   font-size: 22px;
 }
 

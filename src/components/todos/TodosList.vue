@@ -24,6 +24,7 @@ export default {
       required: true,
     },
   },
+  emits: ["completed", "update", "remove"],
 };
 </script>
 

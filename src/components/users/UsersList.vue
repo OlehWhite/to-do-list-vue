@@ -6,7 +6,7 @@
       v-for="user in users"
       :key="user.id"
       :user="user"
-      @remove="$emit('remove', user.id)"
+      @remove="removeUser"
     />
   </section>
 </template>
@@ -22,7 +22,12 @@ export default {
       required: true,
     },
   },
-  methods: {},
+  emits: ["remove"],
+  methods: {
+    removeUser() {
+      this.$emit("remove", this.user.id);
+    },
+  },
 };
 </script>
 

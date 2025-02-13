@@ -8,6 +8,7 @@ export default {
   props: {
     modelValue: [String, Number],
   },
+  emits: ["update:modelValue"],
   methods: {
     updateInput(event) {
       this.$emit("update:modelValue", event.target.value);

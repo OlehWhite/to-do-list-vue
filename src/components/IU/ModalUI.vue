@@ -1,11 +1,11 @@
 <template>
   <div v-if="show" class="container" @click="closeModal">
     <div class="wrapper">
-      Remove this todo - {{ this.todo.name }}?
+      <p>Remove this block - {{ item.name }}?</p>
 
       <div class="wrapper-buttons">
         <button-ui @click="closeModal">Cancel</button-ui>
-        <button-ui @click="removeTodo">Remove</button-ui>
+        <button-ui @click="removeItem">Remove</button-ui>
       </div>
     </div>
   </div>
@@ -17,23 +17,23 @@ import ButtonUi from "@/components/IU/ButtonUI.vue";
 export default {
   name: "modal-ui",
   components: { ButtonUi },
-  emits: ["completed", "update", "remove"],
   props: {
     show: {
       type: Boolean,
       required: true,
     },
-    todo: {
+    item: {
       type: Object,
       required: true,
     },
   },
+  emits: ["update:show", "remove"],
   methods: {
     closeModal() {
       this.$emit("update:show", false);
     },
-    removeTodo() {
-      this.$emit("remove", this.todo.id);
+    removeItem() {
+      this.$emit("remove", this.item.id);
       this.closeModal();
     },
   },
@@ -53,6 +53,7 @@ export default {
   z-index: 10;
   width: 100%;
   background: rgba(0, 0, 0, 0.51);
+  transition: 1s;
 }
 
 .wrapper {

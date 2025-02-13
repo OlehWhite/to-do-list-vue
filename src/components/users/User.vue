@@ -1,6 +1,11 @@
 <template>
   <div class="wrapper" @click="goToToDos()">
-    <input-ui v-if="isChanged" type="text" v-model="user.name" @click.prevent />
+    <input-ui
+      v-if="isChanged"
+      type="text"
+      v-model="user.name"
+      @click.prevent.stop
+    />
 
     <p v-if="!isChanged" class="user-name">{{ user.name }}`s ToDos 📋</p>
 
@@ -13,18 +18,19 @@
         {{ isChanged ? "✅" : "✍️" }}
       </button>
 
-      <button class="btn-remove" @click.prevent.stop="$emit('remove', user.id)">
-        🗑
-      </button>
+      <button class="btn-remove" @click.prevent.stop="openModal">🗑</button>
     </div>
   </div>
+
+  <modal-ui v-model:show="open" :item="user" @remove="$emit('remove', user)" />
 </template>
 
 <script lang="ts">
+import ModalUi from "@/components/IU/ModalUI.vue";
 import InputUi from "@/components/IU/InputUI.vue";
 
 export default {
-  components: { InputUi },
+  components: { InputUi, ModalUi },
   props: {
     user: {
       type: Object,
@@ -34,8 +40,10 @@ export default {
   data() {
     return {
       isChanged: false,
+      open: false,
     };
   },
+  emits: ["remove"],
   methods: {
     changeUserName() {
       this.isChanged = !this.isChanged;
@@ -44,6 +52,9 @@ export default {
       const userId = this.user.id;
 
       this.$router.push(`/users/${userId}/todos`);
+    },
+    openModal() {
+      this.open = true;
     },
   },
 };

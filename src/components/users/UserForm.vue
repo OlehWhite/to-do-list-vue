@@ -13,7 +13,11 @@
 </template>
 
 <script>
+import InputUi from "@/components/IU/InputUI.vue";
+import ButtonUi from "@/components/IU/ButtonUI.vue";
+
 export default {
+  components: { ButtonUi, InputUi },
   props: {
     users: {
       type: Array,
@@ -29,6 +33,7 @@ export default {
       },
     };
   },
+  emits: ["create"],
   methods: {
     createUser() {
       this.user.id = new Date().getTime();

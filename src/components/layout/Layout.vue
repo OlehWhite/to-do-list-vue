@@ -2,9 +2,9 @@
   <background />
 
   <div class="container">
-    <div class="wrapper">
+    <main class="wrapper">
       <slot />
-    </div>
+    </main>
 
     <footer>
       <a
@@ -30,7 +30,7 @@ export default {
 .container {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
 }
@@ -41,15 +41,13 @@ export default {
   background-color: rgba(56, 56, 56, 0.47);
   width: 100%;
   max-width: 500px;
-  height: 75%;
+  margin-top: 40px;
   min-height: 800px;
   border-radius: 20px;
   border: 1px solid turquoise;
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,6 +93,7 @@ footer a:hover {
   .wrapper {
     height: 100%;
     border-radius: 0;
+    margin-top: 0;
   }
 }
 </style>
