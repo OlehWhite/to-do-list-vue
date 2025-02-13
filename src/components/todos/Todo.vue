@@ -32,9 +32,10 @@
 <script lang="ts">
 import ModalUi from "@/components/IU/ModalUI.vue";
 import InputUi from "@/components/IU/InputUI.vue";
+import CheckboxUi from "@/components/IU/CheckboxUI.vue";
 
 export default {
-  components: { InputUi, ModalUi },
+  components: { CheckboxUi, InputUi, ModalUi },
   props: {
     todo: {
       type: Object,
